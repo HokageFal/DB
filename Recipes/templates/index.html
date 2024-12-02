@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Главная страница
+{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        {% for recipe in recipes %}
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-boby">
+                        <h5 class="card-title">{{ recipe.title }}</h5>
+                        <p class="card-text">ПУРРУРУРУРУР</p>
+                        {% if recipe.image %}
+                            <img src="{{ recipe.image.url }}" class="card-img-bottom" alt="..." width="100" style="max-width: 100%; max-height: 300px; object-fit: cover;">
+                        {% endif %}
+
+                        <a href="" class="btn btn-primary">Просмотреть</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    {% else %}
+        <a href="{% url "login" %}">Войдите в аккаунт</a>
+    {% endif %}
+{% endblock %}
